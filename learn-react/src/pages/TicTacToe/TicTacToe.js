@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Block } from '../../components/Block';
 import { Button } from '../../components/Button'
 import './TicTacToe.css';
@@ -22,13 +22,19 @@ export function TicTacToe(){
       [-1, -1, -1],
     ]);
     setCurrentPlayer(3);
-    
   }
+
+  useEffect(()=>{
+    detectWinner();
+  },[tMatrix])
 
   function detectWinner(){
     let sum;
+
     let won = winCombinations.some((combination) =>{
       sum = 0;
+      
+      
       // ["10","11","12"]
       combination.split(',').forEach((item)=>{
         sum = sum + tMatrix[item[0]][item[1]]
@@ -51,13 +57,12 @@ export function TicTacToe(){
       return temp;
     });
     setCurrentPlayer((v)=>v===3?4:3);
-    detectWinner();
   }
 
   return (
     <div className="t3-container">
       <h1>Tic Tac Toe</h1>
-      <div class="game-info">
+      <div className="game-info">
         <h2>Turn for Player <span ></span></h2>
         <Button text="Reset" onClick={reset} />
       </div>
@@ -67,7 +72,7 @@ export function TicTacToe(){
         }
       </h2>
       
-      <div class="game-container">
+      <div className="game-container">
         <Block value={tMatrix[0][0]} id={0} onBlockClick={onBlockClick} />
         <Block value={tMatrix[0][1]} id={1} onBlockClick={onBlockClick} />
         <Block value={tMatrix[0][2]} id={2} onBlockClick={onBlockClick} />
