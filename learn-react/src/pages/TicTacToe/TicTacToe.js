@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Block } from '../../components/Block';
-import { Button } from '../../components/Button'
+import { Button } from '../../components/Button';
+import { Counter } from '../../components/Counter';
 import './TicTacToe.css';
 
 export function TicTacToe(){
@@ -24,9 +25,18 @@ export function TicTacToe(){
     setCurrentPlayer(3);
   }
 
-  useEffect(()=>{
-    detectWinner();
-  },[tMatrix])
+  // useEffect(()=>{
+  //   detectWinner();
+  // },[tMatrix])
+
+  // useEffect(()=>{
+  //   console.log("entered");
+
+  //   return ()=>{
+  //     console.log("exit");
+  //   }
+  // },[])
+
 
   function detectWinner(){
     let sum;
@@ -71,7 +81,7 @@ export function TicTacToe(){
           winnerName && ("Player "+ winnerName+ " Wins") 
         }
       </h2>
-      
+      {tMatrix[0][0] >0 && tMatrix[0][1]<0 ? <Counter /> : <></>}
       <div className="game-container">
         <Block value={tMatrix[0][0]} id={0} onBlockClick={onBlockClick} />
         <Block value={tMatrix[0][1]} id={1} onBlockClick={onBlockClick} />

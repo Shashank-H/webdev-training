@@ -1,13 +1,25 @@
 
 import { Button } from './Button';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 
 
 export function Counter(){
 
   const [state,setState] = useState(0);
-  const [a,setA] = useState(5);
   
+
+  useEffect(()=>{
+    console.log('rendered')
+  })
+  
+  useEffect(()=>{
+    console.log("entered");
+
+    return ()=>{
+      console.log("exit");
+    }
+  },[])
+
   function onIncrementClick(){
     // console.log("increment ",state)
     // value = value + 1;
