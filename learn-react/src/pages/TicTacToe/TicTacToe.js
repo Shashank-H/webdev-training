@@ -23,11 +23,12 @@ export function TicTacToe(){
       [-1, -1, -1],
     ]);
     setCurrentPlayer(3);
+    setWinnerName('');
   }
 
-  // useEffect(()=>{
-  //   detectWinner();
-  // },[tMatrix])
+  useEffect(()=>{
+    detectWinner();
+  },[tMatrix])
 
   // useEffect(()=>{
   //   console.log("entered");
@@ -61,6 +62,9 @@ export function TicTacToe(){
   
 
   function onBlockClick(id){
+    if(winnerName||tMatrix[parseInt(id/3)][id%3]>-1){
+      return;
+    }
     setTMatrix((m)=>{
       let temp = [...m];
       temp[parseInt(id/3)][id%3] = currentPlayer;
@@ -81,7 +85,6 @@ export function TicTacToe(){
           winnerName && ("Player "+ winnerName+ " Wins") 
         }
       </h2>
-      {tMatrix[0][0] >0 && tMatrix[0][1]<0 ? <Counter /> : <></>}
       <div className="game-container">
         <Block value={tMatrix[0][0]} id={0} onBlockClick={onBlockClick} />
         <Block value={tMatrix[0][1]} id={1} onBlockClick={onBlockClick} />
