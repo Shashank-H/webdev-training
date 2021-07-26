@@ -20,6 +20,14 @@ export function Counter(){
     }
   },[])
 
+  useEffect(()=>{
+    console.log("state changed ", state)
+
+    return ()=>{
+      console.log("cleanup ", state)
+    }
+  },[state])
+
   function onIncrementClick(){
     // console.log("increment ",state)
     // value = value + 1;
