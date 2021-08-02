@@ -1,0 +1,17 @@
+.home{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.home-qod{
+  display:flex;
+  width: 100%;
+  align-items:center;
+  justify-content: center;
+}
